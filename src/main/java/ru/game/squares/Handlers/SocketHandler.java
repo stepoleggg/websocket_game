@@ -24,17 +24,25 @@ public class SocketHandler extends TextWebSocketHandler {
             throws InterruptedException, IOException {
 
         for(WebSocketSession webSocketSession : sessions) {
-            Map value = new Gson().fromJson(message.getPayload(), Map.class);
-            StateHandler.updateState(value);
-
-            Gson gson = new Gson();
-            Type gsonType = new TypeToken<HashMap>(){}.getType();
-            String gsonString = gson.toJson(StateHandler.state, gsonType);
             if(webSocketSession.isOpen()){
+
+                //получение
+                Map value = new Gson().fromJson(message.getPayload(), Map.class);
+                StateHandler.updateState(value);
+                Gson gson = new Gson();
+                Type gsonType = new TypeToken<HashMap>(){}.getType();
+
+                //отправка
+                String gsonString = gson.toJson(StateHandler.state, gsonType);
                 synchronized(webSocketSession){
+                    StateHandler.addSession(webSocketSession.getId(), (String) value.get("name"));
                     webSocketSession.sendMessage(new TextMessage(gsonString));
                 }
 
+            }else{
+                //выход
+                sessions.remove(webSocketSession);
+                StateHandler.deletePlayer(webSocketSession.getId());
             }
         }
     }
