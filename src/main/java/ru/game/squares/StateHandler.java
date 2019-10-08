@@ -12,4 +12,8 @@ public class StateHandler {
     public static void updateState(Map value){
         state.put(value.get("name"), value);
     }
+
+    public static void deletePlayer(Map value){
+        state.remove(value.get("name"));
+    }
 }

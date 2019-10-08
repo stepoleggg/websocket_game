@@ -30,8 +30,9 @@ public class SocketHandler extends TextWebSocketHandler {
             Gson gson = new Gson();
             Type gsonType = new TypeToken<HashMap>(){}.getType();
             String gsonString = gson.toJson(StateHandler.state, gsonType);
-            System.out.println(gsonString);
-            webSocketSession.sendMessage(new TextMessage(gsonString));
+            if(webSocketSession.isOpen()){
+                webSocketSession.sendMessage(new TextMessage(gsonString));
+            }
         }
     }
 

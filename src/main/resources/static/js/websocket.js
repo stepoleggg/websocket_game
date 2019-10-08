@@ -4,7 +4,7 @@ function connect() {
 	ws = new WebSocket('ws://localhost:8080/name');
 	ws.onmessage = function(data){
 	    state = JSON.parse(data.data);
-	    console.log(data.data);
+	    //console.log(data.data);
 	}
 	ws.onopen = function(){
         connected = true;
@@ -22,7 +22,7 @@ function disconnect() {
 function sendState(player){
     let state = JSON.stringify(player);
     if(connected){
-        console.log(state);
+        //console.log(state);
         ws.send(state);
     }
 }

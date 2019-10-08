@@ -1,6 +1,6 @@
 let name = prompt('Введите ваше имя', "Анон");
 let p = new Player(name);
-let delay = 40;
+let delay = 20;
 let keys = [];
 var state = new Array();
 state[p.name] = p;
@@ -20,7 +20,7 @@ function refresh(){
 
 
 window.onkeydown = function(e){
-    console.log(e.keyCode);
+    //console.log(e.keyCode);
     if(!keys[e.keyCode]){
         keys[e.keyCode] = true;
     }
