@@ -1,7 +1,7 @@
 let connected = false;
 
 function connect() {
-	ws = new WebSocket('ws://localhost:8080/name');
+	ws = new WebSocket('ws://'+window.location.host+window.location.pathname+'/name');
 	ws.onmessage = function(data){
 	    state = JSON.parse(data.data);
 	    //console.log(data.data);
