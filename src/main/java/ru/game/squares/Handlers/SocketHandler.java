@@ -1,4 +1,4 @@
-package ru.game.squares;
+package ru.game.squares.Handlers;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;

@@ -1,4 +1,4 @@
-package ru.game.squares;
+package ru.game.squares.Handlers;
 
 import org.springframework.security.core.parameters.P;
 

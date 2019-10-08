@@ -1,17 +1,15 @@
-package ru.game.squares;
+package ru.game.squares.Configuration;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.messaging.simp.config.MessageBrokerRegistry;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.socket.config.annotation.AbstractWebSocketMessageBrokerConfigurer;
 import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
 
 import java.util.Collections;
 
 @EnableWebSocketMessageBroker
-public class CorsConfig extends AbstractWebSocketMessageBrokerConfigurer {
+public class CorsConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
