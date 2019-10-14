@@ -5,7 +5,6 @@ let keys = [];
 var state = new Array();
 state[p.name] = p;
 
-paintPlayer(p);
 connect();
 
 window.setInterval(refresh, delay);
@@ -19,15 +18,3 @@ function refresh(){
 
 
 
-window.onkeydown = function(e){
-    //console.log(e.keyCode);
-    if(!keys[e.keyCode]){
-        keys[e.keyCode] = true;
-    }
-}
-
-window.onkeyup = function(e){
-    if(keys[e.keyCode]){
-        keys[e.keyCode] = false;
-    }
-}
