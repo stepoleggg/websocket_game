@@ -2,34 +2,32 @@ class Player {
     constructor(name){
         this.name = name;
         this.size = 30;
-        this.speed = 10;
-        this.x = Math.random()*width;
-        this.y = Math.random()*height;
-        this.color = "rgb("+Math.floor(Math.random()*255)+", "+Math.floor(Math.random()*255)+", "+Math.floor(Math.random()*255)+")";
+        this.speed = 0.1;
+        this.rotationSpeed = Math.PI/100;
+        this.x = Math.random()*20;
+        this.y = Math.random()*20;
+        this.color = getRandomColor();
         this.angle = 0;
         this.bullets = [];
     }
 
     //moving
-
-
-    
     moveUp(){
-        this.y -= this.speed;
-        //this.x += this.speed*Math.cos(this.angle);
-        //this.y += this.speed*Math.sin(this.angle);
+        this.y -= Math.cos(this.angle)*this.speed;
+        this.x -= Math.sin(this.angle)*this.speed;
     }
 
     moveDown(){
-        this.y += this.speed;
+        this.y += Math.cos(this.angle)*this.speed;
+        this.x += Math.sin(this.angle)*this.speed;
     }
 
     moveLeft(){
-        this.x -= this.speed;
+        this.angle += this.rotationSpeed;
     }
 
     moveRight(){
-        this.x += this.speed;
+        this.angle -= this.rotationSpeed;
     }
 
     move(){
@@ -57,7 +55,6 @@ class Player {
     }
 
     //shot
-
     shot(){
         this.bullets.push(new Bullet(this.x, this.y, this.angle, 30, 2, Math.random()*50));
     }

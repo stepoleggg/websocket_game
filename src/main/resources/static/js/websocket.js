@@ -26,9 +26,3 @@ function sendState(player){
         ws.send(state);
     }
 }
-
-function getPlayersState(){
-    let arr = new Array();
-    arr.push(p);
-    return arr;
-}

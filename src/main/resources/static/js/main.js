@@ -11,7 +11,6 @@ window.setInterval(refresh, delay);
 
 function refresh(){
     let players = state;
-    repaint(players);
     p.move();
     sendState(p);
 }

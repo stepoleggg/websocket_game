@@ -16,7 +16,6 @@ window.onmousedown = function(e){
 }
 
 window.onmousemove = function(e){
-    let y = e.clientY-canvas.getBoundingClientRect().top;
-    let x = e.clientX-canvas.getBoundingClientRect().left;
-    p.angle = Math.atan2(y - p.y, x - p.x);
+    //let y = e.clientY-renderer.domElement.getBoundingClientRect().top;
+    //let x = e.clientX-renderer.domElement.getBoundingClientRect().left;
 }
