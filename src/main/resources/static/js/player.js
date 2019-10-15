@@ -15,15 +15,15 @@ class Player {
 
     
     moveUp(){
-        //this.y -= this.speed;
-        this.x += this.speed*Math.cos(this.angle);
-        this.y += this.speed*Math.sin(this.angle);
+        this.y -= this.speed;
+        //this.x += this.speed*Math.cos(this.angle);
+        //this.y += this.speed*Math.sin(this.angle);
     }
 
     moveDown(){
-        //this.y += this.speed;
+        this.y += this.speed;
     }
-    /*
+
     moveLeft(){
         this.x -= this.speed;
     }
@@ -31,16 +31,16 @@ class Player {
     moveRight(){
         this.x += this.speed;
     }
-    */
+
     move(){
-        /*
+
         if(keys[65]){
             this.moveLeft();
         }
         if(keys[68]){
             this.moveRight();
         }
-        */
+
         if(keys[87]){
             this.moveUp();
         }
