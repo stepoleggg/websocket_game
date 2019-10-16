@@ -12,6 +12,28 @@ document.body.appendChild( renderer.domElement );
 //texture loader
 const loader = new THREE.TextureLoader();
 
+//models
+/*
+var loader2 = new THREE.GLTFLoader();
+loader2.load( 'models/man.glb', function ( gltf ) {
+    gltf.scene.position.y = 5;
+    scene.add( gltf.scene );
+    
+    var directionalLight = new THREE.DirectionalLight( 0xffffff, 1 );
+    scene.add( directionalLight );
+
+    var light = new THREE.PointLight( 0xff0000, 1, 100 );
+    light.position.set( 10, 10, 10 );
+    scene.add( light );
+
+}, undefined, function ( error ) {
+
+	console.error( error );
+
+} );
+*/
+
+
 //floor
 const floorGeometry = new THREE.PlaneGeometry(20, 20);
 const texture = loader.load('textures/floor1.jpg');
@@ -51,14 +73,15 @@ function cameraLook() {
     let relativeCameraOffset = new THREE.Vector3(0,4,10);
     let cameraOffset = relativeCameraOffset.applyMatrix4(cubes[p.name].matrixWorld);
 	camera.position.x = cameraOffset.x;
-	//camera.position.y = cameraOffset.y;
 	camera.position.z = cameraOffset.z;
 	camera.lookAt(cubes[p.name].position);
 }
 
 function toScene(players) {
-    for (i in players) {
-        player = players[i];
+    
+
+    for (name in players) {
+        player = players[name];
         if (cubes[player.name] == undefined) {
             let material = new THREE.MeshBasicMaterial({color: player.color});
             cubes[player.name] = new THREE.Mesh( geometry, material );
@@ -67,6 +90,15 @@ function toScene(players) {
         cubes[player.name].rotation.y = player.angle;
         cubes[player.name].position.x = player.x;
         cubes[player.name].position.z = player.y;
+    }
+
+    if(Object.keys(players).length < Object.keys(cubes).length) {
+        for (name in cubes) {
+            if(players[name] == undefined){
+                scene.remove(cubes[name]);
+                delete cubes[name];
+            }
+        }
     }
 }
 
