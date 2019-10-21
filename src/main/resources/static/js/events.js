@@ -12,7 +12,7 @@ window.onkeyup = function(e){
 }
 
 window.onmousedown = function(e){
-    p.shot();
+    
 }
 
 window.onmousemove = function(e){

@@ -2,8 +2,8 @@ class Player {
     constructor(name){
         this.name = name;
         this.size = 30;
-        this.speed = 0.1;
-        this.rotationSpeed = Math.PI/100;
+        this.speed = 10;
+        this.rotationSpeed = Math.PI;
         this.x = Math.random()*20;
         this.y = Math.random()*20;
         this.color = getRandomColor();
@@ -12,38 +12,42 @@ class Player {
     }
 
     //moving
-    moveUp(){
-        this.y -= Math.cos(this.angle)*this.speed;
-        this.x -= Math.sin(this.angle)*this.speed;
+    moveUp(delta){
+        let k = delta/1000;
+        this.y -= Math.cos(this.angle)*this.speed*k;
+        this.x -= Math.sin(this.angle)*this.speed*k;
     }
 
-    moveDown(){
-        this.y += Math.cos(this.angle)*this.speed;
-        this.x += Math.sin(this.angle)*this.speed;
+    moveDown(delta){
+        let k = delta/1000;
+        this.y += Math.cos(this.angle)*this.speed*k;
+        this.x += Math.sin(this.angle)*this.speed*k;
     }
 
-    moveLeft(){
-        this.angle += this.rotationSpeed;
+    moveLeft(delta){
+        let k = delta/1000;
+        this.angle += this.rotationSpeed*k;
     }
 
-    moveRight(){
-        this.angle -= this.rotationSpeed;
+    moveRight(delta){
+        let k = delta/1000;
+        this.angle -= this.rotationSpeed*k;
     }
 
-    move(){
-
+    move(delta){
+        
         if(keys[65]){
-            this.moveLeft();
+            this.moveLeft(delta);
         }
         if(keys[68]){
-            this.moveRight();
+            this.moveRight(delta);
         }
 
         if(keys[87]){
-            this.moveUp();
+            this.moveUp(delta);
         }
         if(keys[83]){
-            this.moveDown();
+            this.moveDown(delta);
         }
 
         for(let b = 0; b < this.bullets.length; b++){
@@ -52,10 +56,8 @@ class Player {
                 this.bullets.splice(b, 1);
             }
         }
-    }
 
-    //shot
-    shot(){
-        this.bullets.push(new Bullet(this.x, this.y, this.angle, 30, 2, Math.random()*50));
+        state[p.name] = p;
     }
 }
+

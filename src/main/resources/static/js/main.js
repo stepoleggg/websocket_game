@@ -10,8 +10,7 @@ connect();
 window.setInterval(refresh, delay);
 
 function refresh(){
-    let players = state;
-    p.move();
+    
     sendState(p);
 }
 
